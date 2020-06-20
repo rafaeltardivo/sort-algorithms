@@ -7,7 +7,8 @@ def first_bubble_sort(numbers):
     Args:
         numbers (list): list of integers to be sorted.
     Returns:
-        iterations (int): number of iterations the algorithm took to order
+        numbers (list): sorted list.
+        iterations (int): number of iterations the algorithm took to sort
         the list.
     """
     size = len(numbers)
@@ -19,7 +20,7 @@ def first_bubble_sort(numbers):
             iterations += 1
             if numbers[j] > numbers[j + 1]:
                 numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
-    return iterations
+    return numbers, iterations
 
 
 def second_bubble_sort(numbers):
@@ -30,7 +31,8 @@ def second_bubble_sort(numbers):
     Args:
         numbers (list): list of integers to be sorted.
     Returns:
-        iterations (int): number of iterations the algorithm took to order
+        numbers (list): sorted list.
+        iterations (int): number of iterations the algorithm took to sort
         the list.
     """
     size = len(numbers)
@@ -42,22 +44,53 @@ def second_bubble_sort(numbers):
             iterations += 1
             if numbers[j] > numbers[j + 1]:
                 numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
-    return iterations
+    return numbers, iterations
+
+
+def third_bubble_sort(numbers):
+    """Third implementation of bubble sort. Contains the second optimization
+    plus a new one: a boolean that indicated if any swap has been made. If
+    not, the list is already sorted. The iteration counter will be present
+    to show the difference between each implementation.
+
+    Args:
+        numbers (list): list of integers to be sorted.
+    Returns:
+        numbers (list): sorted list.
+        iterations (int): number of iterations the algorithm took to sort
+        the list.
+    """
+    size = len(numbers)
+    iterations = 0
+
+    for i in range(size - 1):
+        swapped = False
+        iterations += 1
+        for j in range(size - i - 1):
+            iterations += 1
+            if numbers[j] > numbers[j + 1]:
+                numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
+                swapped = True
+        if not swapped:
+            break
+    return numbers, iterations
 
 
 if __name__ == "__main__":
-    first_numbers = [6, 3, 7, 8, 9]
-
-    iterations = first_bubble_sort(first_numbers)
+    numbers, iterations = first_bubble_sort([6, 3, 7, 8, 9])
     print(
-        f"first_bubble_sort result: {first_numbers}."
+        f"first_bubble_sort result:  {numbers}."
         f" Sorted after {iterations} iterations."
     )
 
-    second_numbers = [6, 3, 7, 8, 9]
-
-    iterations = second_bubble_sort(second_numbers)
+    numbers, iterations = second_bubble_sort([6, 3, 7, 8, 9])
     print(
-        f"second_bubble_sort result: {second_numbers}."
+        f"second_bubble_sort result: {numbers}."
+        f" Sorted after {iterations} iterations."
+    )
+
+    numbers, iterations = third_bubble_sort([6, 3, 7, 8, 9])
+    print(
+        f"third bubble_sort result:  {numbers}."
         f" Sorted after {iterations} iterations."
     )
