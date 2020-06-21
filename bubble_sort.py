@@ -76,6 +76,25 @@ def third_bubble_sort(numbers):
     return numbers, iterations
 
 
+def recursive_bubble_sort(numbers, size):
+    """Recursive implementation of bubble sort.
+
+    Args:
+        numbers (list): list of integers to be sorted.
+        size (int): size of the list
+    Returns:
+        size (int): size of the list.
+    """
+    if size == 1:
+        return numbers, size
+
+    for j in range(size - 1):
+        if numbers[j] > numbers[j + 1]:
+            numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
+
+    return recursive_bubble_sort(numbers, size - 1)
+
+
 if __name__ == "__main__":
     numbers, iterations = first_bubble_sort([6, 3, 7, 8, 9])
     print(
@@ -94,3 +113,6 @@ if __name__ == "__main__":
         f"third bubble_sort result:  {numbers}."
         f" Sorted after {iterations} iterations."
     )
+
+    numbers, iterations = recursive_bubble_sort([6, 3, 7, 8, 9], 5)
+    print(f"recursive bubble_sort result:  {numbers}.")
