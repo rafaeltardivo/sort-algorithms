@@ -31,7 +31,7 @@ def first_insertion_sort(numbers):
 
 
 def second_insertion_sort(numbers):
-    """Non recursive second implementation of insertion sort.This one contains
+    """Non recursive second implementation of insertion sort. This one contains
     the first optimization which checks if previous element is greater than
     current. iteration counter will be present to show the difference between
     each implementation.
@@ -61,6 +61,26 @@ def second_insertion_sort(numbers):
     return numbers, iterations
 
 
+def recursive_insertion_sort(numbers, size):
+    """recursive implementation of  insertion sort.
+    Args:
+        numbers (list): list of integers to be sorted.
+        size (int): size of the list.
+    Returns:
+        size (int): size of the list.
+    """
+
+    if size == 1:
+        return numbers, size
+
+    for i in range(size):
+        j = i
+        while j > 0 and numbers[j] < numbers[j - 1]:
+            numbers[j], numbers[j - 1] = numbers[j - 1], numbers[j]
+            j -= 1
+    return recursive_insertion_sort(numbers, size - 1)
+
+
 if __name__ == "__main__":
     numbers, iterations = first_insertion_sort([6, 3, 7, 8, 9])
     print(
@@ -73,3 +93,6 @@ if __name__ == "__main__":
         f"second_insertion_sort result:  {numbers}."
         f" Sorted after {iterations} iterations."
     )
+
+    numbers, _ = recursive_insertion_sort([6, 3, 7, 8, 9], 5)
+    print(f"recursive_insertion_sort result:  {numbers}.")

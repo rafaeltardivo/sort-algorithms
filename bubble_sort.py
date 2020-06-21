@@ -81,7 +81,7 @@ def recursive_bubble_sort(numbers, size):
 
     Args:
         numbers (list): list of integers to be sorted.
-        size (int): size of the list
+        size (int): size of the list.
     Returns:
         size (int): size of the list.
     """
@@ -114,5 +114,5 @@ if __name__ == "__main__":
         f" Sorted after {iterations} iterations."
     )
 
-    numbers, iterations = recursive_bubble_sort([6, 3, 7, 8, 9], 5)
+    numbers, _ = recursive_bubble_sort([6, 3, 7, 8, 9], 5)
     print(f"recursive bubble_sort result:  {numbers}.")
